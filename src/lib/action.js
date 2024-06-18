@@ -11,5 +11,19 @@ export const doLogout = async() =>{
     await signOut({redirectTo:"/"});
 }
 
+export const doCredentialsLogin = async(formData) =>{
+    const {email, password} = Object.fromEntries(formData);
+    try{
+        const response = await signIn("credentials",{
+            email: email,
+            password: password,
+            redirect: false,
+        });
+        return response;
+    }catch(e){
+        throw new Error(e);
+    }
+}
+
 
 

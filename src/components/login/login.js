@@ -13,8 +13,28 @@ import {
 
 import Link from "next/link";
 import { doSocialLogin } from "@/lib/action";
+import { doCredentialsLogin } from "@/lib/action";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+  
+  const router = useRouter();
+
+  const handleFormSubmit = async (event) =>{
+    event.preventDefault();
+    try{
+      const formData = new FormData(event.currentTarget);
+      const response = await doCredentialsLogin(formData);
+
+      if(!!response.error){
+
+      }else{
+        router.push('/');
+      }
+    }catch(e){
+
+    }
+  }
 
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black mt-44">
@@ -22,7 +42,7 @@ const SignIn = () => {
         Welcome to ACME
       </h2>
 
-      <form className="my-8" action="">
+      <form className="my-8" onSubmit={handleFormSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input id="email" placeholder="projectmayhem@fc.com" type="email" name="email" />

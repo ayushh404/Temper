@@ -15,3 +15,8 @@ export const getUsers = async ()=>{
     }
 }
 
+export const getUserByEmail = async (email)=>{
+    await connectToDb();
+    const found = User.findOne({email:email});
+    return found;
+}

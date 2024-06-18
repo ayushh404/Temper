@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     firstName:{
         type:String,
-        required:true,
+        required: true,
     },
-    lastEName:{
+    lastName:{
         type:String,
-        required:true,
+        required: true,
     },
     email:{
         type:String,
@@ -17,8 +17,8 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
+        required:true,
     },
-    
 },{timestamps:true});
 //In Mongoose, setting timestamps: true in a schema automatically adds two properties to each document created from that schema:
 // createdAt: This timestamp records when the document was created.

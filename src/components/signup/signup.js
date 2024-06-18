@@ -4,17 +4,24 @@ import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import cn from "@/util/cn";  // Corrected import path
-
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export function SignUp() {
-  const handleSubmit = (e) => {
+
+  const router = useRouter();
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    try{
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData);
+      const response = await axios.post('/api/register', data);
+
+      response.status === 201 && router.push('/login')
+    }catch(e){
+      console.log(e.message)
+    }
   };
 
   return (
@@ -27,20 +34,20 @@ export function SignUp() {
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>
-            <Input id="firstname" placeholder="Tyler" type="text" />
+            <Input id="firstname" placeholder="Tyler" type="text" name='firstName' />
           </LabelInputContainer>
           <LabelInputContainer>
             <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Durden" type="text" />
+            <Input id="lastname" placeholder="Durden" type="text" name='lastName' />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input id="email" placeholder="projectmayhem@fc.com" type="email" name='email' />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input id="password" placeholder="••••••••" type="password" name='password'/>
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="twitterpassword">Repeat Password</Label>
@@ -48,6 +55,7 @@ export function SignUp() {
             id="twitterpassword"
             placeholder="••••••••"
             type="password" // Corrected type to "password"
+            name='repeatPassword'
           />
         </LabelInputContainer>
 

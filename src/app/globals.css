@@ -2,4 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* html.light {
+    --background-color: #f2f2f2;
+    --text-color: #000000;
+}
+
+html.dark {
+    --background-color: #191919;
+    --text-color: #fff;
+}
+
+.body-dark-mode {
+    @apply bg-[var(--background-color)] text-[var(--text-color)];
+} */
 

@@ -32,15 +32,7 @@ const Nav = ({session}) => {
           links.map((item) => (
             <NavbarItem key={item.title} className="m-2">
               <Link color="foreground" href={item.path}>
-                <span
-                  className={`text-lg inline-block ${
-                    pathname === item.path
-                      ? 'border-b-2 border-blue-500'
-                      : 'hover:border-b-2 hover:border-white-500'
-                  } transition duration-400 text-black`}
-                >
-                  {item.title}
-                </span>
+                {item.title}
               </Link>
             </NavbarItem>
           ))
@@ -76,15 +68,7 @@ const Nav = ({session}) => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.title}-${index}`}>
               <Link color="foreground" href={item.path}>
-                <span
-                  className={`text-lg inline-block ${
-                    pathname === item.path
-                      ? 'border-b-2 border-blue-500'
-                      : ''
-                  } transition duration-300`}
-                >
-                  {item.title}
-                </span>
+                {item.title}
               </Link>
           </NavbarMenuItem>
         ))}

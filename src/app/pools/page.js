@@ -1,7 +1,10 @@
+// import { ModeToggle } from "../ModeToggle/page"
 
 const PoolPage = () => {
   return (
-    <div>Pool Page</div>
+    <div>Pool Page
+      {/* <ModeToggle/> */}
+    </div>
   )
 }
 
